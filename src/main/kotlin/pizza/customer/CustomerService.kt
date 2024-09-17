@@ -1,6 +1,5 @@
 package pizza.customer
 
-import org.jetbrains.exposed.sql.transactions.transaction
 import pizza.plugins.DatabaseSingleton
 
 class CustomerService {
@@ -11,7 +10,7 @@ class CustomerService {
         customerRepository.readAll()
 
 
-    suspend fun createCustomer(fullName:String, phoneNumber:String) =
+    suspend fun createCustomer(fullName: String, phoneNumber: String) =
         customerRepository.create(fullName, phoneNumber)
 
 }

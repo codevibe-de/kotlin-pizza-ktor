@@ -16,9 +16,15 @@ fun Application.customerRoutes() {
                 val customers = customerService.getAll()
                 call.respond(HttpStatusCode.OK, customers)
             }
+            get("/{id}") {
+                // ...
+            }
             post {
-                val user = call.receive<CreateCustomerRequest>()
-                val id = customerService.createCustomer(user.fullName, user.phoneNumber)
+                val customerReq = call.receive<CreateCustomerRequest>()
+                val id = customerService.createCustomer(
+                    customerReq.fullName,
+                    customerReq.phoneNumber
+                )
                 call.respond(HttpStatusCode.Created, id)
             }
         }
